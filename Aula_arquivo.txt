@@ -1,0 +1,83 @@
+/====================================================================================\
+|														 |
+|python -m venv venv											 |
+|venv\scripts\activate											 |
+|pip install -r requirements										 |
+|python projeto\manage.py runserver									 |
+|														 |
+\====================================================================================/
+
+Fornecedor:
+
+	Arquivo_medicamentos
+		- Nome_Real;
+		- Nome_Fantasia;
+
+
+
+
+Colocar arquivos no App:
+
+arquivo_foto = models.FileField(_('Foto do objeto'), null=True, blank=True, upload_to='midias', help_text='Tamanho máximo de 64MB')
+
+Fornecedor - models
+
+26	arquivo_medicamentos = models.FileField('Relação medicamentos', null=True, blank=True, upload_to='midias', help_text='Arquivos extenção .csv')
+
+
+
+projeto/projeto/settings.py
+131
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'projeto/static/')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+MEDIA_URL = '/media/'
+
+
+projeto/fornecedor/Views:
+23     fields = ['nome', 'cnpj', 'cidade', 'tipo_fornecedor','arquivo_medicamentos', 'is_active']
+
+33	 fields = ['nome', 'cnpj', 'cidade', 'tipo_fornecedor','arquivo_medicamentos', 'is_active']
+
+projeto/fornecedor/templates/fornecedor/form:
+
+12	... enctype="multipart/form-data">
+
+projeto/fornecedor/templates/fornecedor/list:
+20				<th>Lista Medicamentos</th>
+
+33						
+					<td class="text-center"> 
+						{% if fornecedor.arquivo_medicamentos %}
+							<a href="{{ fornecedor.arquivo_medicamentos.url }}" target="_blank" class="btn btn-sm btn-success">
+								{% bootstrap_icon 'download' %}
+							</a>			
+						{% else %}
+							<a href="" target="_blank" class="btn btn-sm btn-warning disabled">
+						{% endif %}
+					</td>
+41					
+
+
+
+Migrate:
+ctrl + c no server
+
+python projeto\manage.py makemigrations			- Proibido em servido
+python projeto\manage.py migrate
+
+
+python projeto\manage.py runserver
+
+projeto\projeto\urls
+
+20
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+urlpatterns += static(settings.STATIC_URL,
+    document_root = settings.STATIC_ROOT)
