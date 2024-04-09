@@ -23,6 +23,7 @@ class Fornecedor(models.Model):
     cnpj = models.CharField('CNPJ *', unique=True, max_length=15, help_text='* Campo obrigatório')
     cidade = models.CharField('Cidade *', max_length=100, help_text='* Campo obrigatório')   
     tipo_fornecedor = models.CharField('Tipo de fornecedor *', max_length=10, choices=FORNECEDOR_TIPO, help_text='* Campo obrigatório')
+    arquivo_medicamentos = models.FileField('Relação medicamentos', null=True, blank=True, upload_to='midias', help_text='Arquivos extenção .csv')
     is_active = models.BooleanField('Ativo', default=True, help_text='Se ativo, o fornecedor pode ser usado no sistema')
     slug = models.SlugField('Hash',max_length= 200,null=True,blank=True)
 
