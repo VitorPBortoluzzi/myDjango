@@ -38,7 +38,7 @@ class PacienteUpdateView(LoginRequiredMixin, EnfermeiroRequiredMixin, UpdateView
         return reverse(self.success_url) 
 
 
-class PacienteDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+class PacienteDeleteView(LoginRequiredMixin, EnfermeiroRequiredMixin, DeleteView):
     model = Paciente
     success_url = 'paciente_list'
 

@@ -16,7 +16,7 @@ from .models import Usuario
 
 from .forms import BuscaUsuarioForm
 
-class UsuarioListView(LoginRequiredMixin, ListView):
+class UsuarioListView(LoginRequiredMixin,EnfermeiroRequiredMixin, ListView):
     model = Usuario
 
     def get_context_data(self, **kwargs):
