@@ -1,0 +1,4 @@
+https://github.com/alexandrezamberlan/python-django/tree/main
+
+permissões - C:\Users\laboratorio\Desktop\Nova Pasta\myDjango\Covid\projeto\utils\decorators.py
+reset de senha - C:\Users\laboratorio\Desktop\Nova Pasta\myDjango\Covid\projeto\core\templates\registration
