@@ -1,0 +1,26 @@
+alexz@ufn.edu.br
+
+python -m venv venv									 
+venv\scripts\activate									 
+pip install -r requirements							 
+python projeto\manage.py runserver
+
+
+
+
+Limpar migrates
+apps - mudar
+models
+urls
+views
+
+Templates
+instituicao_list
+	Alteração perdida - table table hover --> Table responsive
+
+Avisar o sistema, app novo.
+
+Projeto - Settings -
+
+makemigrations instituicao
+migrate
