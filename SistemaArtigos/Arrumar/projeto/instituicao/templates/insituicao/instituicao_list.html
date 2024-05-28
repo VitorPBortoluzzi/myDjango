@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}
+	{% bootstrap_icon 'tower' %} Instituição
+{% endblock %}
+
+{% block content %}
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	    <a href="{% url 'instituicao_create' %}" class="btn btn-md btn-primary">{% bootstrap_icon 'record' %} Cadastrar Instituição</a>
+	  </div>
+	</div>
+	<table class="table table-hover">
+  		<thead>
+  			<th>Nome</th>
+			<th>Localidade</th>
+			<th class="text-center">Lista Medicamentos</th>
+			<th class="text-center">Ativo</th>
+  			<th class="text-center">Editar</th>
+  			<th class="text-center">Excluir</th>
+  		</thead>
+
+  		<tbody>
+  			{% for instituicao in object_list %}
+				<tr>
+					<td>
+						{{ instituicao.nome }}
+						{% if instituicao.sigla %}
+							| <small>{{ instituicao.sigla}} </small>
+						{% end if %}
+					</td>
+					<td>
+						{{ instituicao.cidade }} <br>
+						<small> {{ instituicao.estado}} |</small>
+					</td>
+					<td>{{ instituicao.cidade }}</td>
+					<td>{{ instituicao.tipo_instituicao }}</td>
+					<td class="text-center"> 
+						{% if instituicao.arquivo_medicamentos %}
+							<a href="{{ instituicao.arquivo_medicamentos.url }}" target="_blank" class="btn btn-sm btn-success">
+								{% bootstrap_icon 'download' %}
+							</a>
+						{% else %}
+							<a href="" target="_blank" class="btn btn-sm btn-warning disabled">
+								{% bootstrap_icon 'download' %}
+							</a>
+						{% endif %}
+					</td>
+					<td class="text-center">
+						{% if instituicao.is_active %}
+							{% bootstrap_icon 'thumbs-up' size='sm' %}
+						{% else %}
+							{% bootstrap_icon 'thumbs-down' size='sm' %}
+						{% endif %}
+					</td>
+					<td class="text-center">
+				          {% bootstrap_button content='' href=fornecedor.get_absolute_url button_type='link' icon='edit' button_class='btn btn-primary' size='sm' %}
+				    </td>
+				    <td class="text-center">
+				          {% bootstrap_button content='' href=fornecedor.get_delete_url button_type='link' icon='trash' button_class='btn btn-danger' size='sm' %}
+				    </td>
+				</tr>
+			{% endfor %}
+  		</tbody>
+	</table>
+{% endblock %}

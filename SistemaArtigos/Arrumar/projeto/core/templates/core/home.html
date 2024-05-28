@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block title %}
+      <!-- <img src="{% static 'core/img/logoUFN_hor.jpg' %}"
+      class="img-responsive" style="max-width: 120px;"> -->
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+      
+      <center>
+            <img src="{% static 'core/img/logo.jpg' %}"
+            class="img-responsive" style="max-width: 320px;">
+	</center>
+{% endif %}
+
+{% endblock %}
