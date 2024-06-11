@@ -14,7 +14,7 @@ class EventoForm(forms.ModelForm):
         fields = ['nome', 'tipo', 'instituicao', 'coordenador', 'coordenador_suplente', 'email', 'data_inicio', 'data_limite_trabalhos', 'modelo_artigo', 'arquivo_modelo', 'is_active']
 
 
-class BuscaEventoForm(forms.Form):        
+class BuscaEventoForm(forms.Form):           
     pesquisa = forms.CharField(label='Pesquisa livre', required=False)
-    
+    coordenador = forms.ModelChoiceField(label='Coordenador', queryset=Usuario.coordenadores.all(), required=False)
     

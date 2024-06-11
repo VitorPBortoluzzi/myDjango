@@ -1,0 +1,11 @@
+Auto Cadastro
+Usuario/template/4 registers
+
+Views 4 Classes_register
+
+E URLS dos 4_registers
+
+Dentro do settings falta adicionar: EMAIL_HOST_USER
+
+App Evento:
+Models

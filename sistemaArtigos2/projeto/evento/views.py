@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.contrib import messages
 
 from django.db.models import Q
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 
 from django.shortcuts import redirect
 
@@ -43,10 +45,11 @@ class EventoListView(LoginRequiredMixin, ListView):
 
         if form.is_valid():            
             pesquisa = form.cleaned_data.get('pesquisa')            
-                        
+            coordenador = form.cleaned_data.get('coordenador')
             if pesquisa:
                 qs = qs.filter(nome__icontains=pesquisa)
-            
+            if coordenador:
+                qs = qs.filter(coordenador=coordenador)
         return qs
  
 
@@ -56,6 +59,9 @@ class EventoCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
     form_class = EventoForm
     success_url = 'evento_list'
     
+    # def form_valid(self, form: BaseModelForm) -> HttpResponse:
+    #     return super().form_valid(form)
+
     def get_success_url(self):
         messages.success(self.request, 'Evento cadastrado com sucesso na plataforma!')
         return reverse(self.success_url)
